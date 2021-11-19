@@ -1,7 +1,8 @@
-package photos.picsum.mlbdproject
+package photos.picsum.mlbdproject.view
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import photos.picsum.mlbdproject.R
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
