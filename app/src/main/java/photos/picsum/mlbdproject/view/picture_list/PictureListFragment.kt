@@ -5,18 +5,19 @@ import android.view.View
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import photos.picsum.mlbdproject.databinding.FragmentPictureListBinding
 import photos.picsum.mlbdproject.view.BaseFragment
 import photos.picsum.mlbdproject.view_model.SharedViewModel
 
-class PictureListFragment : BaseFragment<FragmentPictureListBinding>(FragmentPictureListBinding::inflate) {
-
-    private val viewModel:PictureListViewModel by viewModels()
-    private val sharedViewModel:SharedViewModel by activityViewModels()
+class PictureListFragment :
+    BaseFragment<FragmentPictureListBinding>(FragmentPictureListBinding::inflate) {
+    private val viewModel: PictureListViewModel by viewModels()
+    private val sharedViewModel: SharedViewModel by activityViewModels()
     private val listAdapter by lazy { PictureListAdapter(requireContext()) }
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -29,9 +30,12 @@ class PictureListFragment : BaseFragment<FragmentPictureListBinding>(FragmentPic
 
         viewLifecycleOwner.lifecycleScope.launch {
 
-            viewModel.callApi().collectLatest   { pagingData->
-                binding.imageList.adapter=listAdapter
-                binding.imageList.hasFixedSize()
+            viewModel.callApi().collectLatest { pagingData ->
+                binding.apply {
+                    imageList.adapter = listAdapter
+                    imageList.hasFixedSize()
+
+                }
                 listAdapter.submitData(lifecycle = lifecycle, pagingData = pagingData)
 
             }

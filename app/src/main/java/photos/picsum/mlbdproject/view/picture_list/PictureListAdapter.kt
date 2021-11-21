@@ -7,8 +7,9 @@ import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import photos.picsum.mlbdproject.databinding.ImageListLayoutBinding
+import photos.picsum.mlbdproject.utils.LoadImage
 
-class PictureListAdapter (val context:Context):
+class PictureListAdapter (private val context:Context):
     PagingDataAdapter<PictureListResponse.PictureListResponseItem, PictureListAdapter.ListViewHolder>(
         DiffClass()
     ) {
@@ -37,7 +38,13 @@ class PictureListAdapter (val context:Context):
     override fun onBindViewHolder(holder: PictureListAdapter.ListViewHolder, position: Int) {
 
 
-        holder.binding.link.text=getItem(position)!!.downloadUrl
+        holder.binding.apply {
+
+            link.text=getItem(position)!!.author
+            LoadImage.load(context, link =getItem(position)!!.downloadUrl, imageView = linkImageView )
+
+        }
+
 
     }
 
@@ -51,6 +58,8 @@ class PictureListAdapter (val context:Context):
 
         return ListViewHolder(binding)
     }
+
+
 
 
 }

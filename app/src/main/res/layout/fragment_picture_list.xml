@@ -11,6 +11,9 @@
         android:layout_height="match_parent"
         android:id="@+id/imageList"
         tools:listitem="@layout/image_list_layout"
-        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        />
+        app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+        app:spanCount="2"
+        android:layoutMode="opticalBounds"
+        android:layout_margin="10dp"
+       />
 </androidx.constraintlayout.widget.ConstraintLayout>
