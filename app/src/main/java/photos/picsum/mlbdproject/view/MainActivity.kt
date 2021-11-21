@@ -12,7 +12,6 @@ import androidx.navigation.fragment.NavHostFragment
 import kotlinx.coroutines.flow.collectLatest
 import photos.picsum.mlbdproject.R
 import photos.picsum.mlbdproject.databinding.ActivityMainBinding
-import photos.picsum.mlbdproject.view.picture_list.PictureListViewModel
 import photos.picsum.mlbdproject.view_model.SharedViewModel
 
 class MainActivity : AppCompatActivity() {

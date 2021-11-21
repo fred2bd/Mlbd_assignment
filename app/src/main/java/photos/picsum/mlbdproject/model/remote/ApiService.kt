@@ -9,8 +9,8 @@ interface ApiService {
 
     @GET("list?")
     suspend fun searchApi(
-        @Query("page_number") page: Int,
+        @Query("page") page: Int,
         @Query("limit") limit: Int,
-    ): Response<PictureListResponse>
+    ): PictureListResponse
 
 }

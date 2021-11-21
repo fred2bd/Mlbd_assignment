@@ -15,7 +15,6 @@ object ApiClient {
 
     }
 
-
     private fun provideClient(): Retrofit {
 
         val interceptor = HttpLoggingInterceptor()
