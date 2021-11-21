@@ -9,5 +9,18 @@
         android:id="@+id/pictureListFragment"
         android:name="photos.picsum.mlbdproject.view.picture_list.PictureListFragment"
         android:label="picture_list_fragment"
-        tools:layout="@layout/fragment_picture_list" />
+        tools:layout="@layout/fragment_picture_list" >
+        <action
+            android:id="@+id/action_pictureListFragment_to_fullImageViewFragment"
+            app:destination="@id/fullImageViewFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/fullImageViewFragment"
+        android:name="photos.picsum.mlbdproject.view.full_picture.FullImageViewFragment"
+        android:label="fragment_full_image_view"
+        tools:layout="@layout/fragment_full_image_view" >
+        <argument
+            android:name="imageUrl"
+            app:argType="string" />
+    </fragment>
 </navigation>

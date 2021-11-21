@@ -5,19 +5,22 @@ import android.view.View
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
+import photos.picsum.mlbdproject.R
 import photos.picsum.mlbdproject.databinding.FragmentPictureListBinding
 import photos.picsum.mlbdproject.view.BaseFragment
 import photos.picsum.mlbdproject.view_model.SharedViewModel
 
 class PictureListFragment :
-    BaseFragment<FragmentPictureListBinding>(FragmentPictureListBinding::inflate) {
+    BaseFragment<FragmentPictureListBinding>(FragmentPictureListBinding::inflate),
+    PictureListAdapter.ClickCallBack {
     private val viewModel: PictureListViewModel by viewModels()
     private val sharedViewModel: SharedViewModel by activityViewModels()
-    private val listAdapter by lazy { PictureListAdapter(requireContext()) }
+    private val listAdapter by lazy { PictureListAdapter(requireContext(), this) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -27,6 +30,7 @@ class PictureListFragment :
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
 
         viewLifecycleOwner.lifecycleScope.launch {
 
@@ -41,6 +45,15 @@ class PictureListFragment :
             }
 
         }
+
+    }
+
+    override fun OnItemClick(url: String) {
+
+        val b = Bundle()
+        b.putString("imageUrl", url)
+
+        findNavController().navigate(R.id.action_pictureListFragment_to_fullImageViewFragment, b)
 
     }
 

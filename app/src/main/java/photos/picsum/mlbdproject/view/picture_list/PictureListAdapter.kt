@@ -9,11 +9,10 @@ import androidx.recyclerview.widget.RecyclerView
 import photos.picsum.mlbdproject.databinding.ImageListLayoutBinding
 import photos.picsum.mlbdproject.utils.LoadImage
 
-class PictureListAdapter (private val context:Context):
+class PictureListAdapter(private val context: Context, private val clickCallBack: ClickCallBack) :
     PagingDataAdapter<PictureListResponse.PictureListResponseItem, PictureListAdapter.ListViewHolder>(
         DiffClass()
     ) {
-
 
     class DiffClass : DiffUtil.ItemCallback<PictureListResponse.PictureListResponseItem>() {
         override fun areItemsTheSame(
@@ -40,11 +39,19 @@ class PictureListAdapter (private val context:Context):
 
         holder.binding.apply {
 
-            link.text=getItem(position)!!.author
-            LoadImage.load(context, link =getItem(position)!!.downloadUrl, imageView = linkImageView )
+            link.text = getItem(position)!!.author
+            LoadImage.load(
+                context,
+                link = getItem(position)!!.downloadUrl,
+                imageView = linkImageView
+            )
 
+            root.setOnClickListener {
+
+                getItem(position)?.let { it1 -> clickCallBack.OnItemClick(it1.downloadUrl) }
+
+            }
         }
-
 
     }
 
@@ -60,6 +67,10 @@ class PictureListAdapter (private val context:Context):
     }
 
 
+    interface ClickCallBack {
+        fun OnItemClick(url: String)
+
+    }
 
 
 }
