@@ -30,6 +30,7 @@ class PictureListFragment :
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        sharedViewModel.getTitle(getString(R.string.gallery))
 
 
         viewLifecycleOwner.lifecycleScope.launch {
@@ -48,7 +49,7 @@ class PictureListFragment :
 
     }
 
-    override fun OnItemClick(url: String) {
+    override fun onItemClick(url: String) {
 
         val b = Bundle()
         b.putString("imageUrl", url)

@@ -1,34 +1,37 @@
 package photos.picsum.mlbdproject.view.full_picture
 
-import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
-import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
-import androidx.fragment.app.viewModels
-import photos.picsum.mlbdproject.R
+import androidx.fragment.app.activityViewModels
 import photos.picsum.mlbdproject.databinding.FragmentFullImageViewBinding
+import photos.picsum.mlbdproject.utils.LoadImage
 import photos.picsum.mlbdproject.view.BaseFragment
+import photos.picsum.mlbdproject.view_model.SharedViewModel
+
 
 class FullImageViewFragment :
-    BaseFragment<FragmentFullImageViewBinding>(FragmentFullImageViewBinding::inflate) {
-
-    private var imageUrl:String=""
-
-
-
+    BaseFragment<FragmentFullImageViewBinding>(FragmentFullImageViewBinding::inflate){
+    private var imageUrl: String = ""
+    private val sharedViewModel: SharedViewModel by activityViewModels()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        sharedViewModel.getTitle("")
+        imageUrl = arguments?.getString("imageUrl")!!
+        sharedViewModel.getImageUrl(imageUrl)
 
-        imageUrl= arguments?.getString("imageUrl")!!
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
 
+            LoadImage.load(
+                context = requireContext(),
+                imageView = binding.fillImageView,
+                link = imageUrl, loader =binding.imageLoader)
+
 
     }
+
 
 }

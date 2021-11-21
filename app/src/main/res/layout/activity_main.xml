@@ -20,6 +20,17 @@
         android:id="@+id/back_btn"
         />
 
+    <androidx.appcompat.widget.AppCompatButton
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:background="@drawable/ic_outline_cloud_download_24"
+        android:layout_marginEnd="10dp"
+        android:id="@+id/download_image_btn"
+        app:layout_constraintEnd_toEndOf="@id/toolbar"
+        app:layout_constraintBottom_toBottomOf="@id/toolbar"
+        app:layout_constraintTop_toTopOf="@id/toolbar"/>
+
+
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
@@ -30,6 +41,8 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         android:background="?attr/colorPrimaryVariant"
+        app:layout_constraintBottom_toTopOf="@id/fragment_container"
+        android:animateLayoutChanges="true"
         >
 
         <TextView

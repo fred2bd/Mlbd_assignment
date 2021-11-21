@@ -17,6 +17,8 @@ class SharedViewModel : ViewModel() {
     sealed class CommunicationState {
         data class Loading(val show: Boolean) : CommunicationState()
         data class Msg(val msg: String) : CommunicationState()
+        data class DownloadImageUrl(val url: String) : CommunicationState()
+        data class ToolbarTitle(val title: String) : CommunicationState()
     }
 
     fun showLoading(show: Boolean) {
@@ -36,6 +38,22 @@ class SharedViewModel : ViewModel() {
 
         }
     }
+
+    fun getTitle(title: String) {
+
+        viewModelScope.launch (Dispatchers.Main){
+            _data.emit(CommunicationState.ToolbarTitle(title))
+
+        }
+    }
+
+    fun getImageUrl(url:String){
+        viewModelScope.launch (Dispatchers.Main){
+            _data.emit(CommunicationState.DownloadImageUrl(url))
+
+        }
+    }
+
 
 
 }

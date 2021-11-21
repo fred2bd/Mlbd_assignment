@@ -8,6 +8,8 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import photos.picsum.mlbdproject.databinding.ImageListLayoutBinding
 import photos.picsum.mlbdproject.utils.LoadImage
+import java.util.*
+
 
 class PictureListAdapter(private val context: Context, private val clickCallBack: ClickCallBack) :
     PagingDataAdapter<PictureListResponse.PictureListResponseItem, PictureListAdapter.ListViewHolder>(
@@ -37,20 +39,25 @@ class PictureListAdapter(private val context: Context, private val clickCallBack
     override fun onBindViewHolder(holder: PictureListAdapter.ListViewHolder, position: Int) {
 
 
+
         holder.binding.apply {
 
             link.text = getItem(position)!!.author
             LoadImage.load(
                 context,
                 link = getItem(position)!!.downloadUrl,
-                imageView = linkImageView
+                imageView = linkImageView,imageLoader
             )
 
             root.setOnClickListener {
 
-                getItem(position)?.let { it1 -> clickCallBack.OnItemClick(it1.downloadUrl) }
+                getItem(position)?.let { it1 -> clickCallBack.onItemClick(it1.downloadUrl) }
 
             }
+            val androidColors: IntArray = context.getResources().getIntArray(photos.picsum.mlbdproject.R.array.androidcolors)
+            val randColor=androidColors[Random().nextInt(androidColors.size)]
+            link.setBackgroundColor(randColor)
+
         }
 
     }
@@ -68,9 +75,10 @@ class PictureListAdapter(private val context: Context, private val clickCallBack
 
 
     interface ClickCallBack {
-        fun OnItemClick(url: String)
+        fun onItemClick(url: String)
 
     }
+
 
 
 }

@@ -12,10 +12,11 @@ import androidx.navigation.fragment.NavHostFragment
 import kotlinx.coroutines.flow.collectLatest
 import photos.picsum.mlbdproject.R
 import photos.picsum.mlbdproject.databinding.ActivityMainBinding
+import photos.picsum.mlbdproject.utils.DownloadFile
 import photos.picsum.mlbdproject.view_model.SharedViewModel
 
 class MainActivity : AppCompatActivity() {
-
+    private var imageUrl: String = ""
     private lateinit var binding: ActivityMainBinding
     private lateinit var navController: NavController
     private val sharedViewModel: SharedViewModel by viewModels()
@@ -29,8 +30,39 @@ class MainActivity : AppCompatActivity() {
             supportFragmentManager.findFragmentById(R.id.fragment_container) as NavHostFragment
         navController = navHostFragment.navController
 
-        binding.backBtn.setOnClickListener {
-            onBackPressed()
+        binding.apply {
+
+            backBtn.setOnClickListener {
+                onBackPressed()
+
+
+            }
+            downloadImageBtn.setOnClickListener {
+
+                if (imageUrl.isNotEmpty()) {
+                    DownloadFile.downloadImage(activity = this@MainActivity, imageUrl = imageUrl)
+                }
+
+
+            }
+
+
+        }
+
+        navController.addOnDestinationChangedListener { _, destination, _ ->
+
+            when (destination.id) {
+                R.id.pictureListFragment -> {
+
+                    binding.downloadImageBtn.visibility = View.GONE
+
+                }
+                R.id.fullImageViewFragment -> {
+                    binding.downloadImageBtn.visibility = View.VISIBLE
+
+                }
+                else -> Unit
+            }
 
 
         }
@@ -54,7 +86,13 @@ class MainActivity : AppCompatActivity() {
                     is SharedViewModel.CommunicationState.Msg -> {
                         Toast.makeText(this@MainActivity, it.msg, Toast.LENGTH_LONG).show()
                     }
+                    is SharedViewModel.CommunicationState.DownloadImageUrl -> {
+                        imageUrl = it.url
+                    }
 
+                    is SharedViewModel.CommunicationState.ToolbarTitle -> {
+                        binding.toolbarTitleTextView.text = it.title
+                    }
                 }
 
             }

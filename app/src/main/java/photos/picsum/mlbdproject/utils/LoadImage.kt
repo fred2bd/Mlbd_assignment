@@ -13,7 +13,7 @@ import com.bumptech.glide.request.target.Target
 
 object LoadImage {
 
-    fun load(context: Context, link:String,imageView:ImageView){
+    fun load(context: Context, link:String,imageView:ImageView,loader: ProgressBar){
 
         Glide.with(context).load(link).centerCrop().listener(object :
             RequestListener<Drawable> {
@@ -23,7 +23,7 @@ object LoadImage {
                 target: Target<Drawable>?,
                 isFirstResource: Boolean
             ): Boolean {
-
+                loader.visibility=View.GONE
                 return false
             }
 
@@ -34,6 +34,9 @@ object LoadImage {
                 dataSource: DataSource?,
                 isFirstResource: Boolean
             ): Boolean {
+
+                loader.visibility=View.GONE
+
                 return false
 
             }

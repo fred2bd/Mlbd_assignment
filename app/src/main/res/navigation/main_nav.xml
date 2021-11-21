@@ -12,7 +12,11 @@
         tools:layout="@layout/fragment_picture_list" >
         <action
             android:id="@+id/action_pictureListFragment_to_fullImageViewFragment"
-            app:destination="@id/fullImageViewFragment" />
+            app:destination="@id/fullImageViewFragment"
+            app:enterAnim="@android:anim/fade_in"
+            app:exitAnim="@android:anim/fade_out"
+            app:popEnterAnim="@android:anim/fade_in"
+            app:popExitAnim="@android:anim/fade_out" />
     </fragment>
     <fragment
         android:id="@+id/fullImageViewFragment"
