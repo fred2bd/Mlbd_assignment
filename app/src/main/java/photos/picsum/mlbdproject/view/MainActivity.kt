@@ -1,5 +1,6 @@
 package photos.picsum.mlbdproject.view
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
@@ -13,6 +14,7 @@ import kotlinx.coroutines.flow.collectLatest
 import photos.picsum.mlbdproject.R
 import photos.picsum.mlbdproject.databinding.ActivityMainBinding
 import photos.picsum.mlbdproject.utils.DownloadFile
+import photos.picsum.mlbdproject.utils.ShareImageLink
 import photos.picsum.mlbdproject.view_model.SharedViewModel
 
 class MainActivity : AppCompatActivity() {
@@ -46,6 +48,9 @@ class MainActivity : AppCompatActivity() {
 
             }
 
+            shareBtn.setOnClickListener {
+                ShareImageLink.share(context = this@MainActivity, link = imageUrl)
+            }
 
         }
 
@@ -54,12 +59,11 @@ class MainActivity : AppCompatActivity() {
             when (destination.id) {
                 R.id.pictureListFragment -> {
 
-                    binding.downloadImageBtn.visibility = View.GONE
+                    handleViewVisibility(View.GONE)
 
                 }
                 R.id.fullImageViewFragment -> {
-                    binding.downloadImageBtn.visibility = View.VISIBLE
-
+                    handleViewVisibility(View.VISIBLE)
                 }
                 else -> Unit
             }
@@ -99,6 +103,13 @@ class MainActivity : AppCompatActivity() {
         }
 
 
+    }
+
+    private fun handleViewVisibility(visibility: Int) {
+        binding.apply {
+            downloadImageBtn.visibility = visibility
+            shareBtn.visibility = visibility
+        }
     }
 
 }
