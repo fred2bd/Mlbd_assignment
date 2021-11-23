@@ -14,9 +14,7 @@ object DownloadFile {
 
     fun downloadImage(activity: Activity, imageUrl: String) {
 
-        if (!CheckPermission.verifyPermissions(activity)) {
-            return
-        }
+
         val request = DownloadManager.Request(Uri.parse(imageUrl))
         val title = URLUtil.guessFileName(imageUrl, null, "image/jpeg")
         request.setTitle(title)
