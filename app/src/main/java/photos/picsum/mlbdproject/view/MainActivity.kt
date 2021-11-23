@@ -1,10 +1,11 @@
 package photos.picsum.mlbdproject.view
 
+
+import android.content.pm.PackageManager
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 
-import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.NavController
@@ -12,9 +13,11 @@ import androidx.navigation.fragment.NavHostFragment
 import kotlinx.coroutines.flow.collectLatest
 import photos.picsum.mlbdproject.R
 import photos.picsum.mlbdproject.databinding.ActivityMainBinding
-import photos.picsum.mlbdproject.utils.DownloadFile
-import photos.picsum.mlbdproject.utils.ShareImageLink
 import photos.picsum.mlbdproject.view_model.SharedViewModel
+import com.google.android.material.snackbar.Snackbar
+import photos.picsum.mlbdproject.utils.*
+import photos.picsum.mlbdproject.utils.Constants.MY_PERMISSIONS_REQUEST_STORAGE
+
 
 class MainActivity : AppCompatActivity() {
     private var imageUrl: String = ""
@@ -40,15 +43,29 @@ class MainActivity : AppCompatActivity() {
             }
             downloadImageBtn.setOnClickListener {
 
-                if (imageUrl.isNotEmpty()) {
-                    DownloadFile.downloadImage(activity = this@MainActivity, imageUrl = imageUrl)
+
+                if (CheckInternet.hasNetwork()) {
+                    if (imageUrl.isNotEmpty()) {
+
+                        if (CheckPermission.verifyPermissions(this@MainActivity)) {
+                            DownloadFile.downloadImage(
+                                activity = this@MainActivity,
+                                imageUrl = imageUrl
+                            )
+                        }
+
+
+                    }
+                } else {
+                    showSnackBar(getString(R.string.no_internet_connection))
+
                 }
 
 
             }
 
             shareBtn.setOnClickListener {
-                ShareImageLink.share(link = imageUrl)
+                ShareImageLink.share(activity = this@MainActivity, link = imageUrl)
             }
 
         }
@@ -87,7 +104,9 @@ class MainActivity : AppCompatActivity() {
 
                     }
                     is SharedViewModel.CommunicationState.Msg -> {
-                        Toast.makeText(this@MainActivity, it.msg, Toast.LENGTH_LONG).show()
+
+                        showSnackBar(it.msg)
+
                     }
                     is SharedViewModel.CommunicationState.DownloadImageUrl -> {
                         imageUrl = it.url
@@ -104,10 +123,40 @@ class MainActivity : AppCompatActivity() {
 
     }
 
+    private fun showSnackBar(msg: String) {
+        Snackbar.make(
+            binding.root,
+            msg, Snackbar.LENGTH_LONG
+        ).show()
+    }
+
     private fun handleViewVisibility(visibility: Int) {
         binding.apply {
             downloadImageBtn.visibility = visibility
             shareBtn.visibility = visibility
+        }
+    }
+
+
+
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<out String>,
+        grantResults: IntArray
+    ) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+
+        if (requestCode == MY_PERMISSIONS_REQUEST_STORAGE) {
+
+            if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                DownloadFile.downloadImage(
+                    activity = this@MainActivity,
+                    imageUrl = imageUrl
+                )
+            } else {
+
+                showSnackBar(getString(R.string.permission_denied))
+            }
         }
     }
 
