@@ -19,7 +19,7 @@ class PictureListPagingSource: PagingSource<Int, PictureListResponse.PictureList
 
         return try {
 
-            val response = ApiClient.provideApiService().searchApi(page = position, limit =params.loadSize)
+            val response = ApiClient.provideApiService().getPictureList(page = position, limit =params.loadSize)
 
             val nextKey = if (response.isEmpty()) null else    position + (params.loadSize / DEFAULT_BUFFER_SIZE)
 

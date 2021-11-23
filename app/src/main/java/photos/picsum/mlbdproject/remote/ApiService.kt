@@ -7,7 +7,7 @@ import retrofit2.http.*
 interface ApiService {
 
     @GET("list?")
-    suspend fun searchApi(
+    suspend fun getPictureList(
         @Query("page") page: Int,
         @Query("limit") limit: Int,
     ): PictureListResponse
