@@ -19,5 +19,8 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         android:layoutMode="opticalBounds"
+        android:visibility="gone"
+
        />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

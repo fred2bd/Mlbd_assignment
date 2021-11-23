@@ -31,6 +31,7 @@ class PictureListFragment :
 
             viewModel.callApi().collectLatest { pagingData ->
                 binding.apply {
+                    imageList.visibility=View.VISIBLE
                     imageList.adapter = listAdapter
                     imageList.hasFixedSize()
 
