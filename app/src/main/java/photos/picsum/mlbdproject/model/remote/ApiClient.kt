@@ -2,6 +2,7 @@ package photos.picsum.mlbdproject.model.remote
 
 import okhttp3.*
 import okhttp3.logging.HttpLoggingInterceptor
+import photos.picsum.mlbdproject.BuildConfig
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import java.io.File
@@ -37,7 +38,7 @@ object ApiClient {
 
 
         return Retrofit.Builder()
-            .baseUrl("https://picsum.photos/v2/")
+            .baseUrl(BuildConfig.BASE_URL)
             .client(client)
             .addConverterFactory(GsonConverterFactory.create())
             .build()
