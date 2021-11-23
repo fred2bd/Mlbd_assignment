@@ -11,7 +11,9 @@ import android.widget.Toast
 import photos.picsum.mlbdproject.R
 
 object DownloadFile {
-
+    /*
+     * This function is used to download image file from url
+     */
     fun downloadImage(activity: Activity, imageUrl: String) {
 
 

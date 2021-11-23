@@ -8,6 +8,10 @@ import java.util.concurrent.TimeUnit
 
 object CacheInterceptor {
 
+    /*
+  * offlineInterceptor function is used  to cache response and use it to show data when the app is offline.
+  * networkInterceptor function is used to call api and show data when app is online.
+  */
      fun networkInterceptor(): Interceptor {
         return Interceptor { chain ->
             val response: Response = chain.proceed(chain.request())

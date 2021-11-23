@@ -4,6 +4,11 @@ import android.app.Activity
 import android.content.Intent
 
 object ShareImageLink {
+
+    /*
+  * This function is used to share image link with via other apps
+  */
+
     fun share(activity: Activity, link: String) {
         val sendIntent: Intent = Intent().apply {
             action = Intent.ACTION_SEND

@@ -46,15 +46,15 @@ class PictureListAdapter(private val clickCallBack: ClickCallBack) :
             LoadImage.load(
                 link = getItem(position)!!.downloadUrl,
                 imageView = linkImageView,imageLoader
-            )
+            ) //Load image using Glide
 
             root.setOnClickListener {
 
-                getItem(position)?.let { it1 -> clickCallBack.onItemClick(it1.downloadUrl) }
+                getItem(position)?.let { it1 -> clickCallBack.onItemClick(it1.downloadUrl) } // Click listener callback to get downloadable link in fragment
 
             }
 
-            authorTextView.setBackgroundColor(GetRandomColor.color())
+            authorTextView.setBackgroundColor(GetRandomColor.color()) // Set background by generating random color
 
         }
 

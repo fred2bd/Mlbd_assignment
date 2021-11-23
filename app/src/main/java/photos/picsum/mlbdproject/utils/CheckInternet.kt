@@ -8,8 +8,11 @@ import photos.picsum.mlbdproject.view.MainApplication
 
 object CheckInternet {
 
+    /*
+        * This function is used to check internet connection status
+    */
     fun hasNetwork(): Boolean {
-        var isConnected=false // Initial Value
+        var isConnected = false // Initial Value
         val connectivityManager =
             MainApplication.appContext.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
 

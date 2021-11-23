@@ -9,10 +9,9 @@ import java.io.IOException
 
 class PictureListPagingSource: PagingSource<Int, PictureListResponse.PictureListResponseItem>() {
     override fun getRefreshKey(state: PagingState<Int, PictureListResponse.PictureListResponseItem>): Int? {
-        return state.anchorPosition?.let { anchorPosition ->
-            state.closestPageToPosition(anchorPosition)?.prevKey?.plus(1)
-                ?: state.closestPageToPosition(anchorPosition)?.nextKey?.minus(1)
-        }    }
+        return state.anchorPosition
+
+    }
 
     override suspend fun load(params: LoadParams<Int>): LoadResult<Int, PictureListResponse.PictureListResponseItem> {
 

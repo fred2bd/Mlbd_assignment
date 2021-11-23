@@ -6,7 +6,9 @@ import android.content.pm.PackageManager
 import androidx.core.app.ActivityCompat
 
 object CheckPermission {
-
+    /*
+     * This function is used to check permission status
+     */
     fun verifyPermissions(context: Activity): Boolean {
 
         val permissionExternalMemory =

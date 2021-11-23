@@ -12,7 +12,9 @@ import com.bumptech.glide.request.target.Target
 import photos.picsum.mlbdproject.view.MainApplication
 
 object LoadImage {
-
+    /*
+      * This function is used to load image in a imageview from url using glide library
+      */
     fun load(link:String,imageView:ImageView,loader: ProgressBar){
 
         Glide.with(MainApplication.appContext).load(link).listener(object :

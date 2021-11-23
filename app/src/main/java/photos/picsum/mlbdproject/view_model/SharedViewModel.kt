@@ -9,7 +9,9 @@ import kotlinx.coroutines.launch
 
 class SharedViewModel : ViewModel() {
 
-
+    /*
+    * Shared viewModel to communicate between fragment and activity
+    */
     private val _data = MutableSharedFlow<CommunicationState>()
     val data: SharedFlow<CommunicationState> get() = _data
 
@@ -23,7 +25,7 @@ class SharedViewModel : ViewModel() {
 
     fun showLoading(show: Boolean) {
 
-        viewModelScope.launch (Dispatchers.Main){
+        viewModelScope.launch(Dispatchers.Main) {
             _data.emit(CommunicationState.Loading(show))
 
         }
@@ -33,7 +35,7 @@ class SharedViewModel : ViewModel() {
 
     fun showMsg(msg: String) {
 
-        viewModelScope.launch (Dispatchers.Main){
+        viewModelScope.launch(Dispatchers.Main) {
             _data.emit(CommunicationState.Msg(msg))
 
         }
@@ -41,19 +43,18 @@ class SharedViewModel : ViewModel() {
 
     fun getTitle(title: String) {
 
-        viewModelScope.launch (Dispatchers.Main){
+        viewModelScope.launch(Dispatchers.Main) {
             _data.emit(CommunicationState.ToolbarTitle(title))
 
         }
     }
 
-    fun getImageUrl(url:String){
-        viewModelScope.launch (Dispatchers.Main){
+    fun getImageUrl(url: String) {
+        viewModelScope.launch(Dispatchers.Main) {
             _data.emit(CommunicationState.DownloadImageUrl(url))
 
         }
     }
-
 
 
 }

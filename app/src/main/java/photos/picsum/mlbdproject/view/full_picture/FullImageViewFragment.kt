@@ -2,7 +2,6 @@ package photos.picsum.mlbdproject.view.full_picture
 
 import android.os.Bundle
 import android.view.View
-import android.view.animation.AnimationUtils
 import androidx.fragment.app.activityViewModels
 import photos.picsum.mlbdproject.R
 import photos.picsum.mlbdproject.databinding.FragmentFullImageViewBinding
@@ -17,7 +16,7 @@ class FullImageViewFragment :
     private var imageUrl: String = ""
     private val sharedViewModel: SharedViewModel by activityViewModels()
 
-    private lateinit var pAttacher: PhotoViewAttacher
+    private lateinit var photoAttacher: PhotoViewAttacher
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -28,15 +27,15 @@ class FullImageViewFragment :
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        pAttacher = PhotoViewAttacher(binding.fillImageView)
-        pAttacher.update()
+        photoAttacher = PhotoViewAttacher(binding.fillImageView)  // Add zoom in/out functionality to a imageview
+        photoAttacher.update()
 
 
         binding.apply {
             LoadImage.load(
                 imageView = binding.fillImageView,
                 link = imageUrl, loader = imageLoader
-            )
+            ) //Load image using Glide
 
 
         }

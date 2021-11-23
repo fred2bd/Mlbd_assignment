@@ -1,11 +1,12 @@
 package photos.picsum.mlbdproject.utils
 
-import android.content.Context
 import photos.picsum.mlbdproject.view.MainApplication
 import java.util.*
 
 object GetRandomColor {
-
+    /*
+     * This function is used to generate random color from android_colors array
+     */
 
     fun color(): Int {
         val androidColors: IntArray =
