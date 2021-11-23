@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">Mlbd project</string>
     <string name="gallery">Gallery</string>
-    <string name="downloading">"Downloading..."</string>
+    <string name="downloading">"Downloading…"</string>
     <string name="image_url">"imageUrl"</string>
+    <string name="no_internet_connection">"No internet connection available"</string>
 </resources>

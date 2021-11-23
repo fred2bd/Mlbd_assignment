@@ -3,7 +3,7 @@ package photos.picsum.mlbdproject.view.picture_list
 import android.util.Log
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
-import photos.picsum.mlbdproject.model.remote.ApiClient
+import remote.ApiClient
 import retrofit2.HttpException
 import java.io.IOException
 
@@ -20,8 +20,7 @@ class PictureListPagingSource: PagingSource<Int, PictureListResponse.PictureList
 
         return try {
 
-            val response =
-                ApiClient.provideApiService().searchApi(page = position, limit =params.loadSize)
+            val response = ApiClient.provideApiService().searchApi(page = position, limit =params.loadSize)
 
             val nextKey = if (response.isEmpty()) null else    position + (params.loadSize / DEFAULT_BUFFER_SIZE)
 

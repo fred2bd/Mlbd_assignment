@@ -1,8 +1,7 @@
-package photos.picsum.mlbdproject.model.remote
+package photos.picsum.mlbdproject.remote
 
 
 import photos.picsum.mlbdproject.view.picture_list.PictureListResponse
-import retrofit2.Response
 import retrofit2.http.*
 
 interface ApiService {

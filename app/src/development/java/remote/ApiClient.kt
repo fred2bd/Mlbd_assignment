@@ -1,15 +1,16 @@
-package photos.picsum.mlbdproject.model.remote
+package remote
 
 import okhttp3.*
 import okhttp3.logging.HttpLoggingInterceptor
 import photos.picsum.mlbdproject.BuildConfig
+import photos.picsum.mlbdproject.remote.ApiService
+import photos.picsum.mlbdproject.remote.CacheInterceptor.networkInterceptor
+import photos.picsum.mlbdproject.remote.CacheInterceptor.offlineInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import java.io.File
 
 import java.util.concurrent.TimeUnit
-import photos.picsum.mlbdproject.model.remote.CacheInterceptor.networkInterceptor
-import photos.picsum.mlbdproject.model.remote.CacheInterceptor.offlineInterceptor
 import photos.picsum.mlbdproject.view.MainApplication
 
 object ApiClient {

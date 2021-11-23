@@ -1,10 +1,9 @@
-package photos.picsum.mlbdproject.model.remote
+package photos.picsum.mlbdproject.remote
 
 import okhttp3.CacheControl
 import okhttp3.Interceptor
 import okhttp3.Response
 import photos.picsum.mlbdproject.utils.CheckInternet
-import photos.picsum.mlbdproject.view.MainApplication
 import java.util.concurrent.TimeUnit
 
 object CacheInterceptor {
