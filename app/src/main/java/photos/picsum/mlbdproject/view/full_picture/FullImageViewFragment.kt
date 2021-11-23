@@ -9,12 +9,16 @@ import photos.picsum.mlbdproject.databinding.FragmentFullImageViewBinding
 import photos.picsum.mlbdproject.utils.LoadImage
 import photos.picsum.mlbdproject.view.BaseFragment
 import photos.picsum.mlbdproject.view_model.SharedViewModel
+import uk.co.senab.photoview.PhotoViewAttacher
 
 
 class FullImageViewFragment :
     BaseFragment<FragmentFullImageViewBinding>(FragmentFullImageViewBinding::inflate) {
     private var imageUrl: String = ""
     private val sharedViewModel: SharedViewModel by activityViewModels()
+
+    private lateinit var pAttacher: PhotoViewAttacher
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         sharedViewModel.getTitle("")
@@ -24,6 +28,8 @@ class FullImageViewFragment :
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        pAttacher = PhotoViewAttacher(binding.fillImageView)
+        pAttacher.update()
 
 
         binding.apply {
@@ -31,9 +37,9 @@ class FullImageViewFragment :
                 imageView = binding.fillImageView,
                 link = imageUrl, loader = imageLoader
             )
+
+
         }
-
-
 
 
     }

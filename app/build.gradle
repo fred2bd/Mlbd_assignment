@@ -132,5 +132,10 @@ dependencies {
 
     implementation 'androidx.paging:paging-runtime-ktx:3.1.0'
 
+    implementation 'com.squareup.okhttp3:okhttp:3.0.1'
+    androidTestImplementation 'com.squareup.okhttp:mockwebserver:2.7.2'
+
+    implementation 'com.commit451:PhotoView:1.2.4'
+
 
 }
