@@ -1,11 +1,10 @@
 package photos.picsum.mlbdproject.utils
 
-import android.content.Context
 import android.content.Intent
-import androidx.core.content.ContextCompat.startActivity
+import photos.picsum.mlbdproject.view.MainApplication
 
 object ShareImageLink {
-    fun share(context: Context,link:String){
+    fun share(link:String){
         val sendIntent: Intent = Intent().apply {
             action = Intent.ACTION_SEND
             putExtra(Intent.EXTRA_TEXT, link)
@@ -13,7 +12,7 @@ object ShareImageLink {
         }
 
         val shareIntent = Intent.createChooser(sendIntent, null)
-        context.startActivity(shareIntent)
+        MainApplication.appContext.startActivity(shareIntent)
 
     }
 }

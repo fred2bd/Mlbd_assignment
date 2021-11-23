@@ -6,8 +6,7 @@ import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.StaggeredGridLayoutManager
+
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import photos.picsum.mlbdproject.R
@@ -20,12 +19,7 @@ class PictureListFragment :
     PictureListAdapter.ClickCallBack {
     private val viewModel: PictureListViewModel by viewModels()
     private val sharedViewModel: SharedViewModel by activityViewModels()
-    private val listAdapter by lazy { PictureListAdapter(requireContext(), this) }
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-    }
+    private val listAdapter by lazy { PictureListAdapter( this) }
 
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -52,7 +46,7 @@ class PictureListFragment :
     override fun onItemClick(url: String) {
 
         val b = Bundle()
-        b.putString("imageUrl", url)
+        b.putString(getString(R.string.image_url), url)
 
         findNavController().navigate(R.id.action_pictureListFragment_to_fullImageViewFragment, b)
 

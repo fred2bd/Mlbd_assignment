@@ -29,13 +29,10 @@
         <item>@color/orange</item>
         <item>@color/red</item>
         <item>@color/darkblue</item>
-        <item>@color/darkpurple</item>
         <item>@color/darkgreen</item>
         <item>@color/darkorange</item>
         <item>@color/darkred</item>
-        <item>@color/purple_200</item>
         <item>@color/purple_700</item>
-        <item>@color/grain_yellow</item>
     </integer-array>
 
 

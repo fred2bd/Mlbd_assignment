@@ -1,14 +1,15 @@
 package photos.picsum.mlbdproject.utils
 
 import android.content.Context
+import photos.picsum.mlbdproject.view.MainApplication
 import java.util.*
 
 object GetRandomColor {
 
 
-    fun color(context: Context): Int {
+    fun color(): Int {
         val androidColors: IntArray =
-            context.resources.getIntArray(photos.picsum.mlbdproject.R.array.android_colors)
+            MainApplication.appContext.resources.getIntArray(photos.picsum.mlbdproject.R.array.android_colors)
         return androidColors[Random().nextInt(androidColors.size)]
     }
 }

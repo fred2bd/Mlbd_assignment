@@ -3,6 +3,7 @@ package photos.picsum.mlbdproject.view.full_picture
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.activityViewModels
+import photos.picsum.mlbdproject.R
 import photos.picsum.mlbdproject.databinding.FragmentFullImageViewBinding
 import photos.picsum.mlbdproject.utils.LoadImage
 import photos.picsum.mlbdproject.view.BaseFragment
@@ -16,7 +17,7 @@ class FullImageViewFragment :
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         sharedViewModel.getTitle("")
-        imageUrl = arguments?.getString("imageUrl")!!
+        imageUrl = arguments?.getString(getString(R.string.image_url))!!
         sharedViewModel.getImageUrl(imageUrl)
 
     }
@@ -26,7 +27,6 @@ class FullImageViewFragment :
 
 
             LoadImage.load(
-                context = requireContext(),
                 imageView = binding.fillImageView,
                 link = imageUrl, loader =binding.imageLoader)
 

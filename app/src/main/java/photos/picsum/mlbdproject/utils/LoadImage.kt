@@ -1,6 +1,5 @@
 package photos.picsum.mlbdproject.utils
 
-import android.content.Context
 import android.graphics.drawable.Drawable
 import android.view.View
 import android.widget.ImageView
@@ -10,12 +9,13 @@ import com.bumptech.glide.load.DataSource
 import com.bumptech.glide.load.engine.GlideException
 import com.bumptech.glide.request.RequestListener
 import com.bumptech.glide.request.target.Target
+import photos.picsum.mlbdproject.view.MainApplication
 
 object LoadImage {
 
-    fun load(context: Context, link:String,imageView:ImageView,loader: ProgressBar){
+    fun load(link:String,imageView:ImageView,loader: ProgressBar){
 
-        Glide.with(context).load(link).centerCrop().listener(object :
+        Glide.with(MainApplication.appContext).load(link).listener(object :
             RequestListener<Drawable> {
             override fun onLoadFailed(
                 e: GlideException?,

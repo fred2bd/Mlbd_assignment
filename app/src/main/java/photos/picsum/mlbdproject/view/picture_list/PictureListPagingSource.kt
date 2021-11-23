@@ -7,7 +7,7 @@ import photos.picsum.mlbdproject.model.remote.ApiClient
 import retrofit2.HttpException
 import java.io.IOException
 
-class PictureListPagingSource : PagingSource<Int, PictureListResponse.PictureListResponseItem>() {
+class PictureListPagingSource: PagingSource<Int, PictureListResponse.PictureListResponseItem>() {
     override fun getRefreshKey(state: PagingState<Int, PictureListResponse.PictureListResponseItem>): Int? {
         return state.anchorPosition?.let { anchorPosition ->
             state.closestPageToPosition(anchorPosition)?.prevKey?.plus(1)

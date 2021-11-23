@@ -7,11 +7,12 @@ import android.net.Uri
 import android.os.Environment
 import android.webkit.CookieManager
 import android.webkit.URLUtil
+import android.widget.Toast
 import photos.picsum.mlbdproject.R
 
 object DownloadFile {
 
-     fun downloadImage(activity: Activity,imageUrl:String) {
+    fun downloadImage(activity: Activity, imageUrl: String) {
 
         if (!CheckPermission.verifyPermissions(activity)) {
             return
@@ -26,6 +27,7 @@ object DownloadFile {
         request.setDestinationInExternalPublicDir(Environment.DIRECTORY_DCIM, title)
         val downloadManager = activity.getSystemService(Context.DOWNLOAD_SERVICE) as DownloadManager
         downloadManager.enqueue(request)
+        Toast.makeText(activity, activity.getString(R.string.downloading), Toast.LENGTH_LONG).show()
     }
 
 }

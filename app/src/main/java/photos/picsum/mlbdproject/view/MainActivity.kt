@@ -1,6 +1,5 @@
 package photos.picsum.mlbdproject.view
 
-import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
@@ -49,7 +48,7 @@ class MainActivity : AppCompatActivity() {
             }
 
             shareBtn.setOnClickListener {
-                ShareImageLink.share(context = this@MainActivity, link = imageUrl)
+                ShareImageLink.share(link = imageUrl)
             }
 
         }

@@ -1,6 +1,5 @@
 package photos.picsum.mlbdproject.view.picture_list
 
-import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.paging.PagingDataAdapter
@@ -9,10 +8,10 @@ import androidx.recyclerview.widget.RecyclerView
 import photos.picsum.mlbdproject.databinding.ImageListLayoutBinding
 import photos.picsum.mlbdproject.utils.GetRandomColor
 import photos.picsum.mlbdproject.utils.LoadImage
-import java.util.*
 
 
-class PictureListAdapter(private val context: Context, private val clickCallBack: ClickCallBack) :
+
+class PictureListAdapter(private val clickCallBack: ClickCallBack) :
     PagingDataAdapter<PictureListResponse.PictureListResponseItem, PictureListAdapter.ListViewHolder>(
         DiffClass()
     ) {
@@ -45,7 +44,6 @@ class PictureListAdapter(private val context: Context, private val clickCallBack
 
             authorTextView.text = getItem(position)!!.author
             LoadImage.load(
-                context,
                 link = getItem(position)!!.downloadUrl,
                 imageView = linkImageView,imageLoader
             )
@@ -56,7 +54,7 @@ class PictureListAdapter(private val context: Context, private val clickCallBack
 
             }
 
-            authorTextView.setBackgroundColor(GetRandomColor.color(context = context))
+            authorTextView.setBackgroundColor(GetRandomColor.color())
 
         }
 
