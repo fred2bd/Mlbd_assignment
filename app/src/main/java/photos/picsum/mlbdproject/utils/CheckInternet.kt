@@ -12,7 +12,7 @@ object CheckInternet {
         * This function is used to check internet connection status
     */
     fun hasNetwork(): Boolean {
-        var isConnected = false // Initial Value
+        var isConnected = false
         val connectivityManager =
             MainApplication.appContext.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
 
