@@ -18,7 +18,7 @@
 Presentation (for UI logic, with MVVM).
 
 ## Library 
-- Okhttp interceptor to cache api resposne 
+- Okhttp interceptor to cache api response 
 - Retrofit 
 - Glide
 - Paging 3
