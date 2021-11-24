@@ -1,5 +1,6 @@
 # Mlbd_assignment
-
+Mlbd_assignment sample application shows a list of pictures by calling https://picsum.photos/v2/list? api. The application uses paging 3 library to pagination purpose, has response caching system so the user can use the app offline. User can download the images into the internal storage through the app and also can share the image link with other applications available in the device. 
+ 
 ## DefaultConfig
 - minSdk 24
 - targetSdk 31
