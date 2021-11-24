@@ -6,6 +6,7 @@
 - The user can share the image link with other applications available in the device. 
 - The Application supports portrait and landscape Ui. 
 - The application supports dark and light modes. 
+- Pinch-to-zoom feature is implemented in this app so users can zoom in or out a full image. 
  
 ## DefaultConfig
 - minSdk 24
