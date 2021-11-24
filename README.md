@@ -1,5 +1,11 @@
 # Mlbd_assignment
-Mlbd_assignment sample application shows a list of pictures by calling https://picsum.photos/v2/list? api. The application uses paging 3 library to pagination purpose, has response caching system so the user can use the app offline. User can download the images into the internal storage through the app and also can share the image link with other applications available in the device. 
+- Mlbd_assignment sample application shows a list of pictures by calling https://picsum.photos/v2/list? api. 
+- The application uses paging 3 library for pagination purpose.
+- Response caching system is implemented so the user can use the app offline. 
+- The user can download the images into the internal storage by the app. 
+- The user can share the image link with other applications available in the device. 
+- The Application supports portrait and landscape Ui. 
+- The application supports dark and light modes. 
  
 ## DefaultConfig
 - minSdk 24
@@ -25,14 +31,14 @@ Presentation (for UI logic, with MVVM).
 
 ## Implemented Api call
 Link: https://picsum.photos/v2/list?
-This api will provide list of images 
+- This api will provide list of images. 
 
 
 ## Project run and configuration
-- Checkout the project from github into your local device 
-- Open android studio and open the project form the the directory 
+- Checkout the project from github into your local device. 
+- Open android studio and open the project form the the directory.
 - Replace sdk.dir(sdk path) in local.properties file with your sdk file path. 
-- Sync gradle, Rebuild the project and run the project 
+- Sync gradle, Rebuild the project and run the project. 
 
 ## Build Variant
 The project has 2 build variant. select the variant you want to run in the device from android studio build variant section
