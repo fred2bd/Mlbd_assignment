@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Mlbd project</string>
+    <string name="app_name">Mlbd Project</string>
     <string name="gallery">Gallery</string>
     <string name="downloading">Downloading…</string>
     <string name="image_url">imageUrl</string>
